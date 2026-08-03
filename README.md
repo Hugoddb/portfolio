@@ -1,16 +1,83 @@
-# React + Vite
+# 🖥️ Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive portfolio inspired by a desktop operating system, built with React. Navigate through folders to discover my projects, skills, experiences and contact information in a modern desktop-like interface.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🗂️ Interactive desktop interface
+- 🪟 Custom draggable windows (work in progress)
+- 📂 Project explorer with detailed preview
+- 👤 About page
+- 💻 Skills overview
+- 📄 Downloadable CV
+- 📱 Responsive layout
+- ⚡ Fast development with Vite
 
-## React Compiler
+## 🛠️ Built With
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
+- React Icons
 
-## Expanding the Oxlint configuration
+## 📸 Preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+> Screenshots coming soon.
+
+## 🚀 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Hugoddb/Portfolio.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## 📁 Project Structure
+
+```text
+src/
+├── assets/
+│   ├── icons/
+│   ├── images/
+│   ├── projects/
+│   └── tech/
+├── components/
+│   ├── desktop/
+│   └── windows/
+├── data/
+├── App.jsx
+└── main.jsx
+```
+
+## 📌 Roadmap
+
+- [x] Desktop interface
+- [x] Taskbar
+- [x] About window
+- [x] Projects window
+- [ ] Skills window
+- [ ] Experiences timeline
+- [ ] Terminal contact window
+- [ ] Draggable windows
+- [ ] Window animations
+- [ ] Mobile adaptation
+
+## 👤 Author
+
+**Hugo de Dreux-Brézé**
+
+---
