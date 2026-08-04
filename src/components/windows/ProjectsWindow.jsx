@@ -1,5 +1,6 @@
 import { useState } from "react";
 import projects from "../../data/projects";
+import { FaGithub, FaLock } from "react-icons/fa";
 
 function ProjectsWindow() {
     const [selectedProject, setSelectedProject] = useState(projects[0]);
@@ -7,13 +8,15 @@ function ProjectsWindow() {
     return (
       <div className="h-full flex">
 
-        <div className="w-56 border-r border-slate-700 p-4">
+      <div className="w-56 border-r border-slate-700 p-4 flex flex-col">
 
-          <h2 className="text-white text-xl font-semibold mb-4">
-            Projects
-          </h2>
+      <div className="p-4 border-b border-slate-700">
+        <h2 className="text-white text-xl font-semibold">
+          Projects
+        </h2>
+      </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex-1 overflow-y-auto flex flex-col gap-3 pr-2">
             {projects.map((project) => (
               <button
                 key={project.id}
@@ -88,6 +91,27 @@ function ProjectsWindow() {
           ))}
           </div>
 
+          <div className="mt-8">
+
+          {selectedProject.private ? (
+            <div className="inline-flex items-center gap-2 bg-slate-700 text-slate-300 px-5 py-3 rounded-lg cursor-default">
+              <FaLock />
+              Private Repository
+            </div>
+          ) : (
+            <a
+              href={selectedProject.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex text-white items-center gap-2 bg-slate-700 hover:bg-slate-600 transition px-5 py-3 rounded-lg"
+            >
+              <FaGithub />
+              GitHub
+            </a>
+
+          )}
+
+        </div>
         </div>
 
       </div>

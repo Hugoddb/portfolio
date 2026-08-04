@@ -7,6 +7,7 @@ import cpp from "../assets/tech/C++.webp";
 import python from "../assets/tech/python.png";
 import nodejs from "../assets/tech/nodejs.png";
 import rust from "../assets/tech/rust.webp";
+import sfml from "../assets/tech/Sfml.png"
 
 export const technologies = {
   React: {
@@ -52,5 +53,10 @@ export const technologies = {
   Rust: {
     name: "Rust",
     icon: rust,
+  },
+
+  Sfml: {
+    name: "SFML/CSFML",
+    icon: sfml,
   },
 };
