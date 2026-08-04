@@ -31,7 +31,7 @@ const projects = [
         title: "Pomodocus",
         image: pomodocus,
         description:
-        "Pomodocus is a gamified Pomodoro app featuring collectable dinosaurs! Stay productive whilst collecting adorable dinosaurs.",
+        "Pomodocus is a 10-hour hackathon project. Pomodocus is a gamified Pomodoro app featuring collectable dinosaurs! Stay productive whilst collecting adorable dinosaurs.",
         technologies: [
         technologies.React,
         technologies.Tailwind,
@@ -39,7 +39,7 @@ const projects = [
         technologies.Vite,
         ],
         team: 2,
-        duration: "1 week",
+        duration: "1 day",
         github: "https://github.com/lucasskvn/Pomodocus",
         private: false,
     },
@@ -73,7 +73,7 @@ const projects = [
         ],
         team: 2,
         duration: "2 weeks",
-        github: "https://github.com/lucasskvn/RMRF",
+        github: "https://github.com/Hugoddb/Rmrf",
         private: false,
 
     },
@@ -111,8 +111,23 @@ const projects = [
         private: true,
 
     },
+
     {
         id: 7,
+        title: "My_teams",
+        description:
+        "The MyTeams Application Protocol (MAP) is a client-server protocol inspired by collaborative tools such as Microsoft Teams.",
+        technologies: [
+        technologies.Rust
+        ],
+        team: 3,
+        duration: "1 month",
+        private: true,
+
+    },
+
+    {
+        id: 8,
         title: "My_hunter",
         description:
         "A 2D game project made in C and CSFML. Players must shoot moving targets while improving their score and reflexes.",

@@ -8,6 +8,15 @@ import python from "../assets/tech/python.png";
 import nodejs from "../assets/tech/nodejs.png";
 import rust from "../assets/tech/rust.webp";
 import sfml from "../assets/tech/Sfml.png"
+import css from "../assets/tech/css.png"
+import git from "../assets/tech/git.webp"
+import html from  "../assets/tech/html.webp"
+import javascript from  "../assets/tech/javascript.webp"
+import linux from  "../assets/tech/linux.webp"
+import vscode from "../assets/tech/vscode.png"
+import github from  "../assets/icons/github.webp"
+import haskell from "../assets/tech/haskell.png"
+import bash from "../assets/tech/bash.png"
 
 export const technologies = {
   React: {
@@ -58,5 +67,50 @@ export const technologies = {
   Sfml: {
     name: "SFML/CSFML",
     icon: sfml,
+  },
+
+  Css: {
+    name: "CSS",
+    icon: css,
+  },
+
+  Git: {
+    name: "Git",
+    icon: git,
+  },
+
+  Github: {
+    name: "Github",
+    icon: github,
+  },
+
+  Html: {
+    name: "HTML",
+    icon: html,
+  },
+
+  JavaScript: {
+    name: "Javascript",
+    icon: javascript,
+  },
+
+  Linux: {
+    name: "Linux",
+    icon: linux,
+  },
+
+  VsCode: {
+    name: "VsCode",
+    icon: vscode,
+  },
+
+  Haskell: {
+    name: "Haskell",
+    icon: haskell,
+  },
+
+  Bash: {
+    name: "Bash",
+    icon: bash,
   },
 };

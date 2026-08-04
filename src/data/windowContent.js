@@ -16,16 +16,16 @@ export const windowContent = {
   projects: {
     title: "PROJECTS",
     component: ProjectsWindow,
-    width: "70vw",
-    height: "70vh",
+    width: "80vw",
+    height: "80vh",
     theme: "projects",
   },
 
   contact: {
     title: "CONTACT",
     component: ContactWindow,
-    width: "60vw",
-    height: "55vh",
+    width: "50vw",
+    height: "50vh",
     theme: "terminal",
   },
 
