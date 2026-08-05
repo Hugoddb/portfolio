@@ -11,6 +11,7 @@ const projects = [
     {
         id: 1,
         title: "Portfolio",
+        title2: "Portfolio - Website",
         image: portfolio,
         description:
         "Interactive portfolio inspired by a desktop operating system.",
@@ -29,6 +30,7 @@ const projects = [
     {
         id: 2,
         title: "Pomodocus",
+        title2: "Pomodocus - Gamified Pomodoro",
         image: pomodocus,
         description:
         "Pomodocus is a 10-hour hackathon project. Pomodocus is a gamified Pomodoro app featuring collectable dinosaurs! Stay productive whilst collecting adorable dinosaurs.",
@@ -47,9 +49,10 @@ const projects = [
     {
         id: 3,
         title: "Zappy",
+        title2: "Zappy - Network Game Server",
         image: zappy,
         description:
-        "Zappy - Network Game Server. Zappy is a real-time multiplayer network game in which several teams compete to reach level 8.",
+        "Zappy is a real-time multiplayer network game in which several teams compete to reach level 8.",
         technologies: [
         technologies.C,
         technologies["C++"],
@@ -65,6 +68,7 @@ const projects = [
     {
         id: 4,
         title: "RMRF",
+        title2: "RMRF - Deduplicated Backup Tool",
         image: rmrf,
         description:
         "Chunk-based deduplicated backup tool for files and VM disks. Uses FastCDC (content-defined chunking), BLAKE3 hashing, and zstd compression. Supports Proxmox (QEMU/LXC) VM suspension for consistent snapshots. ",
@@ -81,6 +85,7 @@ const projects = [
     {
         id: 5,
         title: "Codewash",
+        title2: "Codewash - Refactoring",
         image: codewash,
         description:
         "Codewash is a complete refactoring project of an existing application, aiming to improve code quality, maintainability, and ease the implementation of new features.",
@@ -98,6 +103,7 @@ const projects = [
     {
         id: 6,
         title: "Wolf3D",
+        title2: "Wolfenstein3D",
         image: wolf3D,
         description:
         "A 3D game project made in C and CSFML. Inspired by the classic Wolfenstein 3D, it features player movement, raycasting, and real-time rendering.",
@@ -115,6 +121,7 @@ const projects = [
     {
         id: 7,
         title: "My_teams",
+        title2: "My_teams - Client/Server Chat",
         description:
         "The MyTeams Application Protocol (MAP) is a client-server protocol inspired by collaborative tools such as Microsoft Teams.",
         technologies: [
@@ -129,6 +136,7 @@ const projects = [
     {
         id: 8,
         title: "My_hunter",
+        title2: "My_hunter",
         description:
         "A 2D game project made in C and CSFML. Players must shoot moving targets while improving their score and reflexes.",
         technologies: [

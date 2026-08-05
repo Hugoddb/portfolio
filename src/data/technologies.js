@@ -17,6 +17,9 @@ import vscode from "../assets/tech/vscode.png"
 import github from  "../assets/icons/github.webp"
 import haskell from "../assets/tech/haskell.png"
 import bash from "../assets/tech/bash.png"
+import oracle from "../assets/tech/oracle.png"
+import sql from "../assets/tech/sql.webp"
+import jde from "../assets/tech/jde.png"
 
 export const technologies = {
   React: {
@@ -113,4 +116,20 @@ export const technologies = {
     name: "Bash",
     icon: bash,
   },
+
+  Oracle: {
+    name: "Oracle",
+    icon: oracle,
+  },
+
+  Sql: {
+    name: "SQL",
+    icon: sql,
+  },
+
+  JDEdwards: {
+    name: "JDEdwards",
+    icon: jde,
+  }
+
 };

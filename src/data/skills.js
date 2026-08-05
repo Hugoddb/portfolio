@@ -1,4 +1,5 @@
 import { technologies } from "./technologies";
+import fundamentals from "./fundamentals";
 
 const skills = [
   {
@@ -34,13 +35,35 @@ const skills = [
       technologies.VsCode,
       technologies.NodeJS,
       technologies.Bash,
+      technologies.JDEdwards,
     ],
   },
 
   {
-    category: "Framework",
+    category: "Frameworks",
     items: [
       technologies.Sfml,
+    ],
+  },
+
+  {
+    category: "Databases",
+    items: [
+      technologies.Oracle,
+      technologies.Sql,
+    ],
+  },
+
+  {
+    category: "Computer Science",
+    items: [
+      fundamentals.Algorithms,
+      fundamentals.DataStructures,
+      fundamentals.ObjectOrientedProgramming,
+      fundamentals.OperatingSystems,
+      fundamentals.Networking,
+      fundamentals.DatabaseDesign,
+      fundamentals.ProblemSolving,
     ],
   },
 

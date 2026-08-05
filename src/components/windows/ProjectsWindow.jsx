@@ -44,7 +44,7 @@ function ProjectsWindow() {
         <div className="flex-1 p-8 overflow-y-auto">
 
           <h1 className="text-3xl text-white font-bold">
-            {selectedProject.title}
+            {selectedProject.title2}
           </h1>
 
           <img

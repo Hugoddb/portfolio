@@ -60,7 +60,8 @@ function Desktop() {
         </div>
         
         <div className="flex-1 flex flex-col items-center justify-center">
-            <h1 className="text-white text-4xl font-medium">
+        
+            <h1 className="font-title text-5xl font-bold text-white">
                 Hugo de Dreux-Brézé
             </h1>
 
