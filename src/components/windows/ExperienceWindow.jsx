@@ -44,7 +44,6 @@ function ExperienceWindow() {
                 />
 
               </div>
-            
 
                 <p className="text-slate-300 mt-5 leading-7">
                   {exp.description}

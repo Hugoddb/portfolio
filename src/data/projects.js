@@ -4,6 +4,8 @@ import codewash from "../assets/projects/codewash.png"
 import wolf3D from "../assets/projects/wolf3D.jpg"
 import zappy from "../assets/projects/zappy.png"
 import rmrf from "../assets/projects/rmrf.png"
+import hunter from "../assets/projects/hunter.png"
+import myteams from "../assets/projects/myteams.png"
 import { technologies } from "./technologies";
 
 const projects = [
@@ -24,7 +26,6 @@ const projects = [
         duration: "...",
         github: "https://github.com/Hugoddb/portfolio",
         private: false,
-        
     },
 
     {
@@ -122,6 +123,7 @@ const projects = [
         id: 7,
         title: "My_teams",
         title2: "My_teams - Client/Server Chat",
+        image: myteams,
         description:
         "The MyTeams Application Protocol (MAP) is a client-server protocol inspired by collaborative tools such as Microsoft Teams.",
         technologies: [
@@ -137,6 +139,7 @@ const projects = [
         id: 8,
         title: "My_hunter",
         title2: "My_hunter",
+        image: hunter,
         description:
         "A 2D game project made in C and CSFML. Players must shoot moving targets while improving their score and reflexes.",
         technologies: [

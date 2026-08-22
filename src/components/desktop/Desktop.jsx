@@ -30,7 +30,7 @@ const apps = [
 ];
 
 function Desktop() {
-  
+
     const handleFolderClick = (id) => {
         setOpenWindow(id);
     };
@@ -42,9 +42,9 @@ function Desktop() {
 
     const currentWindow = windowContent[openWindow];
     const ActiveComponent = currentWindow?.component;
-    
+
     return (
-    
+
         <div
             className="h-screen w-screen p-6 flex flex-col bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${background})` }}
@@ -58,9 +58,9 @@ function Desktop() {
             />
         ))}
         </div>
-        
+
         <div className="flex-1 flex flex-col items-center justify-center">
-        
+
             <h1 className="font-title text-5xl font-bold text-white">
                 Hugo de Dreux-Brézé
             </h1>

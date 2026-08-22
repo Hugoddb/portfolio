@@ -11,12 +11,12 @@ function AppIcon({ name, icon, url }) {
           alt={name}
           className="w-14 h-14"
         />
-  
+
         <span className="text-white text-sm text-center">
           {name}
         </span>
       </a>
     );
   }
-  
+
   export default AppIcon;

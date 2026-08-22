@@ -47,11 +47,20 @@ function ProjectsWindow() {
             {selectedProject.title2}
           </h1>
 
-          <img
-            src={selectedProject.image}
-            alt={selectedProject.title}
-            className="mt-6 rounded-xl w-full max-w-3xl border border-slate-700"
-          />
+          <div className="mt-6 w-full flex justify-center">
+            <img
+              src={selectedProject.image}
+              alt={selectedProject.title}
+              className="
+                w-full
+                max-w-4xl
+                max-h-[50vh]
+                object-contain
+                rounded-xl
+                border border-slate-700
+              "
+            />
+          </div>
 
           <p className="mt-6 text-slate-300 leading-8">
             {selectedProject.description}
@@ -74,7 +83,7 @@ function ProjectsWindow() {
           </div>
 
           <div className="flex flex-wrap gap-3 mt-6">
-            
+
           {selectedProject.technologies.map((tech) => (
             <div
               key={tech.name}
