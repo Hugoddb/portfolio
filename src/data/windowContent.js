@@ -24,8 +24,8 @@ export const windowContent = {
   contact: {
     title: "CONTACT",
     component: ContactWindow,
-    width: "50vw",
-    height: "50vh",
+    width: "max(50vw, 680px)",
+    height: "max(50vh, 440px)",
     theme: "terminal",
   },
 

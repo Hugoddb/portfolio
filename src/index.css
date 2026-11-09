@@ -3,8 +3,17 @@
 
 body {
     font-family: "Inter", sans-serif;
+    overscroll-behavior: none;
   }
 
   .font-title {
     font-family: "Space Grotesk", sans-serif;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }

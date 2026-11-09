@@ -1,11 +1,11 @@
-import portfolio from "../assets/projects/portfolio.png";
-import pomodocus from "../assets/projects/pomodocus.png";
-import codewash from "../assets/projects/codewash.png"
+import portfolio from "../assets/projects/portfolio.jpg";
+import pomodocus from "../assets/projects/pomodocus.jpg";
+import codewash from "../assets/projects/codewash.jpg"
 import wolf3D from "../assets/projects/wolf3D.jpg"
 import zappy from "../assets/projects/zappy.png"
-import rmrf from "../assets/projects/rmrf.png"
+import rmrf from "../assets/projects/rmrf.jpg"
 import hunter from "../assets/projects/hunter.png"
-import myteams from "../assets/projects/myteams.png"
+import myteams from "../assets/projects/myteams.jpg"
 import { technologies } from "./technologies";
 
 const projects = [

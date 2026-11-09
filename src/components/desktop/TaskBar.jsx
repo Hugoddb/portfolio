@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Wifi, Volume2, BatteryFull } from "lucide-react";
 
-function Taskbar() {
+function Taskbar({ onHome }) {
 
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
@@ -32,17 +32,22 @@ function Taskbar() {
     }, []);
 
     return (
-        <div className="fixed bottom-0 left-0 w-full h-14 bg-slate-900 border-t border-slate-700 flex items-center justify-between px-6">
+        <div className="fixed bottom-0 left-0 z-50 w-full h-14 bg-slate-900 border-t border-slate-700 flex items-center justify-between px-3 md:px-6">
 
-        <div className="bg-slate-700 hover:bg-slate-600 transition-colors rounded-full px-5 py-2">
+        <button
+            type="button"
+            onClick={onHome}
+            disabled={!onHome}
+            className="bg-slate-700 hover:bg-slate-600 transition-colors rounded-full px-4 md:px-5 py-2 cursor-pointer disabled:cursor-default"
+        >
         <span className="text-slate-200 text-sm">
-            Portfolio - Hugo de Dreux-Brézé
+            <span className="hidden sm:inline">Portfolio - </span>Hugo de Dreux-Brézé
         </span>
-        </div>
+        </button>
 
         <div className="flex items-center gap-4">
 
-        <div className="flex items-center gap-3">
+        <div className="hidden sm:flex items-center gap-3">
             <BatteryFull size={18} className="text-white" />
             <Wifi size={18} className="text-white" />
             <Volume2 size={18} className="text-white" />
@@ -59,7 +64,7 @@ function Taskbar() {
         </div>
 
         </div>
-    
+
         </div>
     );
 }

@@ -5,8 +5,10 @@ import background from "../../assets/images/background.png";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
 import AppIcon from "./AppIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { windowContent } from "../../data/windowContent";
+import { links } from "../../data/links";
 
 const folders = [
     { id: "about", name: "About" },
@@ -20,25 +22,45 @@ const apps = [
     {
         name: "GitHub",
         icon: githubIcon,
-        url: "https://github.com/Hugoddb",
+        url: links.github,
     },
     {
         name: "LinkedIn",
         icon: linkedinIcon,
-        url: "https://www.linkedin.com/in/hugo-de-dreux-br%C3%A9z%C3%A9-9b844934a/",
+        url: links.linkedin,
     },
 ];
 
+// lit la fenêtre à ouvrir depuis l'URL (ex: /#projects)
+const getWindowFromHash = () => {
+    const id = window.location.hash.slice(1);
+    return windowContent[id] ? id : null;
+};
+
 function Desktop() {
 
+    const [openWindow, setOpenWindow] = useState(getWindowFromHash);
+
+    // bouton "retour" du navigateur / téléphone => ferme la fenêtre
+    useEffect(() => {
+        const onPopState = () => setOpenWindow(getWindowFromHash());
+        window.addEventListener("popstate", onPopState);
+        return () => window.removeEventListener("popstate", onPopState);
+    }, []);
+
     const handleFolderClick = (id) => {
+        history.pushState({ window: id }, "", `#${id}`);
         setOpenWindow(id);
     };
+
     const closeWindow = () => {
+        if (history.state?.window) {
+            history.back();
+            return;
+        }
+        history.replaceState(null, "", window.location.pathname + window.location.search);
         setOpenWindow(null);
     };
-
-    const [openWindow, setOpenWindow] = useState(null);
 
     const currentWindow = windowContent[openWindow];
     const ActiveComponent = currentWindow?.component;
@@ -46,11 +68,11 @@ function Desktop() {
     return (
 
         <div
-            className="h-screen w-screen p-6 flex flex-col bg-cover bg-center bg-no-repeat"
+            className="relative h-dvh w-screen overflow-hidden pb-14 flex flex-col bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${background})` }}
         >
 
-        <div className="absolute top-8 right-8 flex flex-col gap-6">
+        <div className="hidden md:flex absolute top-8 right-8 flex-col gap-6">
         {apps.map((app) => (
             <AppIcon
             key={app.name}
@@ -59,19 +81,19 @@ function Desktop() {
         ))}
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
 
-            <h1 className="font-title text-5xl font-bold text-white">
-                Hugo de Dreux-Brézé
+            <h1 className="font-title text-4xl sm:text-5xl font-bold text-black">
+                Hugo de <span className="whitespace-nowrap">Dreux-Brézé</span>
             </h1>
 
-            <h2 className="text-slate-400 text-lg font-normal mt-2"> 
+            <h2 className="text-slate-600 text-base sm:text-lg font-normal mt-2">
                 Developer / EPITECH Lyon
             </h2>
 
         </div>
 
-    <div className="flex justify-center gap-20 mb-50">
+    <div className="grid grid-cols-4 gap-y-4 px-3 mb-16 md:flex md:justify-center md:gap-20 md:px-0 md:mb-50">
         {folders.map((folder) => (
         <FolderIcon
             key={folder.id}
@@ -79,10 +101,21 @@ function Desktop() {
             onClick={handleFolderClick}
         />
         ))}
+
+        {apps.map((app) => (
+            <AppIcon
+            key={app.name}
+            {...app}
+            className="md:hidden"
+            labelClassName="text-white"
+            />
+        ))}
     </div>
 
+    <AnimatePresence>
     {ActiveComponent && (
     <Window
+        key={openWindow}
         title={currentWindow.title}
         content={<ActiveComponent />}
         width={currentWindow.width}
@@ -91,8 +124,9 @@ function Desktop() {
         onClose={closeWindow}
     />
     )}
+    </AnimatePresence>
 
-    <Taskbar/>
+    <Taskbar onHome={ActiveComponent ? closeWindow : undefined} />
 
     </div>
   );
