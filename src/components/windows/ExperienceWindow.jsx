@@ -1,6 +1,10 @@
 import experiences from "../../data/experiences";
+import useLanguage from "../../i18n/LanguageContext";
 
 function ExperienceWindow() {
+
+    const { t } = useLanguage();
+
     return (
       <div className="p-5 md:p-10">
 
@@ -25,7 +29,7 @@ function ExperienceWindow() {
 
                 <div>
                   <h2 className="text-white text-xl md:text-2xl font-semibold">
-                    {exp.title}
+                    {t(exp.title)}
                   </h2>
 
                   <p className="text-slate-400 mt-1">
@@ -33,7 +37,7 @@ function ExperienceWindow() {
                   </p>
 
                   <p className="text-slate-500 text-sm mt-1">
-                    {exp.period}
+                    {t(exp.period)}
                   </p>
                 </div>
 
@@ -46,7 +50,7 @@ function ExperienceWindow() {
               </div>
 
                 <p className="text-slate-300 mt-4 md:mt-5 leading-7">
-                  {exp.description}
+                  {t(exp.description)}
                 </p>
 
                 {exp.technologies && (

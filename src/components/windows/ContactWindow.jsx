@@ -1,14 +1,18 @@
 import { links } from "../../data/links";
+import useLanguage from "../../i18n/LanguageContext";
 
 const contacts = [
-    { label: "Name", value: "Hugo de Dreux-Brézé" },
-    { label: "Personal Email", value: links.email, href: `mailto:${links.email}` },
-    { label: "Student Email", value: links.studentEmail, href: `mailto:${links.studentEmail}` },
+    { label: { en: "Name", fr: "Nom" }, value: "Hugo de Dreux-Brézé" },
+    { label: { en: "Personal Email", fr: "Email perso" }, value: links.email, href: `mailto:${links.email}` },
+    { label: { en: "Student Email", fr: "Email étudiant" }, value: links.studentEmail, href: `mailto:${links.studentEmail}` },
     { label: "GitHub", value: "github.com/Hugoddb", href: links.github, external: true },
     { label: "LinkedIn", value: "linkedin.com/in/hugo-de-dreux-brézé", href: links.linkedin, external: true },
 ];
 
 function ContactWindow() {
+
+    const { t } = useLanguage();
+
     return (
       <div className="font-mono text-white text-sm sm:text-base md:text-lg p-5 md:p-8 leading-relaxed">
 
@@ -18,10 +22,10 @@ function ContactWindow() {
 
         <dl className="mt-4 space-y-3 md:space-y-2">
           {contacts.map((contact) => (
-            <div key={contact.label} className="flex flex-col md:flex-row md:items-baseline md:gap-3">
+            <div key={contact.value} className="flex flex-col md:flex-row md:items-baseline md:gap-3">
 
               <dt className="flex md:w-56 shrink-0 items-baseline gap-2 text-white">
-                {contact.label}
+                {t(contact.label)}
                 <span className="hidden md:block flex-1 border-b-2 border-dotted border-slate-600" />
               </dt>
 

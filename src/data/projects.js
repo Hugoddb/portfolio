@@ -13,28 +13,33 @@ const projects = [
     {
         id: 1,
         title: "Portfolio",
-        title2: "Portfolio - Website",
+        title2: { en: "Portfolio - Website", fr: "Portfolio - Site web" },
         image: portfolio,
-        description:
-        "Interactive portfolio inspired by a desktop operating system.",
+        description: {
+            en: "Interactive portfolio inspired by a desktop operating system.",
+            fr: "Portfolio interactif inspiré d'un système d'exploitation de bureau.",
+        },
         technologies: [
         technologies.React,
         technologies.Tailwind,
         technologies.Vite,
         ],
         team: 1,
-        duration: "...",
+        duration: { en: "Ongoing", fr: "En cours" },
         github: "https://github.com/Hugoddb/portfolio",
+        demo: "https://hugoddb-portfolio.vercel.app/",
         private: false,
     },
 
     {
         id: 2,
         title: "Pomodocus",
-        title2: "Pomodocus - Gamified Pomodoro",
+        title2: { en: "Pomodocus - Gamified Pomodoro", fr: "Pomodocus - Pomodoro gamifié" },
         image: pomodocus,
-        description:
-        "Pomodocus is a 10-hour hackathon project. Pomodocus is a gamified Pomodoro app featuring collectable dinosaurs! Stay productive whilst collecting adorable dinosaurs.",
+        description: {
+            en: "Pomodocus is a 10-hour hackathon project. Pomodocus is a gamified Pomodoro app featuring collectable dinosaurs! Stay productive whilst collecting adorable dinosaurs.",
+            fr: "Pomodocus est un projet de hackathon de 10 heures : une application Pomodoro gamifiée avec des dinosaures à collectionner ! Restez productif tout en collectionnant d'adorables dinosaures.",
+        },
         technologies: [
         technologies.React,
         technologies.Tailwind,
@@ -42,7 +47,7 @@ const projects = [
         technologies.Vite,
         ],
         team: 2,
-        duration: "1 day",
+        duration: { en: "1 day", fr: "1 jour" },
         github: "https://github.com/lucasskvn/Pomodocus",
         private: false,
     },
@@ -50,10 +55,12 @@ const projects = [
     {
         id: 3,
         title: "Zappy",
-        title2: "Zappy - Network Game Server",
+        title2: { en: "Zappy - Network Game Server", fr: "Zappy - Serveur de jeu réseau" },
         image: zappy,
-        description:
-        "Zappy is a real-time multiplayer network game in which several teams compete to reach level 8.",
+        description: {
+            en: "Zappy is a real-time multiplayer network game in which several teams compete to reach level 8.",
+            fr: "Zappy est un jeu réseau multijoueur en temps réel dans lequel plusieurs équipes s'affrontent pour atteindre le niveau 8.",
+        },
         technologies: [
         technologies.C,
         technologies["C++"],
@@ -61,7 +68,7 @@ const projects = [
         ],
 
         team: 5,
-        duration: "1 month",
+        duration: { en: "1 month", fr: "1 mois" },
         private: true,
 
     },
@@ -69,15 +76,17 @@ const projects = [
     {
         id: 4,
         title: "RMRF",
-        title2: "RMRF - Deduplicated Backup Tool",
+        title2: { en: "RMRF - Deduplicated Backup Tool", fr: "RMRF - Outil de sauvegarde dédupliquée" },
         image: rmrf,
-        description:
-        "Chunk-based deduplicated backup tool for files and VM disks. Uses FastCDC (content-defined chunking), BLAKE3 hashing, and zstd compression. Supports Proxmox (QEMU/LXC) VM suspension for consistent snapshots. ",
+        description: {
+            en: "Chunk-based deduplicated backup tool for files and VM disks. Uses FastCDC (content-defined chunking), BLAKE3 hashing, and zstd compression. Supports Proxmox (QEMU/LXC) VM suspension for consistent snapshots.",
+            fr: "Outil de sauvegarde dédupliquée par blocs pour fichiers et disques de VM. Utilise FastCDC (découpage défini par le contenu), le hachage BLAKE3 et la compression zstd. Prend en charge la suspension des VM Proxmox (QEMU/LXC) pour des snapshots cohérents.",
+        },
         technologies: [
         technologies.Rust,
         ],
         team: 2,
-        duration: "2 weeks",
+        duration: { en: "2 weeks", fr: "2 semaines" },
         github: "https://github.com/Hugoddb/Rmrf",
         private: false,
 
@@ -88,8 +97,10 @@ const projects = [
         title: "Codewash",
         title2: "Codewash - Refactoring",
         image: codewash,
-        description:
-        "Codewash is a complete refactoring project of an existing application, aiming to improve code quality, maintainability, and ease the implementation of new features.",
+        description: {
+            en: "Codewash is a complete refactoring project of an existing application, aiming to improve code quality, maintainability, and ease the implementation of new features.",
+            fr: "Codewash est un projet de refonte complète d'une application existante, visant à améliorer la qualité du code, sa maintenabilité et à faciliter l'ajout de nouvelles fonctionnalités.",
+        },
         technologies: [
         technologies.React,
         technologies.Tailwind,
@@ -97,7 +108,7 @@ const projects = [
         technologies.Vite,
         ],
         team: 2,
-        duration: "1 month",
+        duration: { en: "1 month", fr: "1 mois" },
         private: true,
 
     },
@@ -106,15 +117,17 @@ const projects = [
         title: "Wolf3D",
         title2: "Wolfenstein3D",
         image: wolf3D,
-        description:
-        "A 3D game project made in C and CSFML. Inspired by the classic Wolfenstein 3D, it features player movement, raycasting, and real-time rendering.",
+        description: {
+            en: "A 3D game project made in C and CSFML. Inspired by the classic Wolfenstein 3D, it features player movement, raycasting, and real-time rendering.",
+            fr: "Un jeu 3D réalisé en C avec la CSFML. Inspiré du classique Wolfenstein 3D, il propose le déplacement du joueur, du raycasting et un rendu en temps réel.",
+        },
         technologies: [
         technologies.C,
         technologies.Sfml,
         ],
 
         team: 2,
-        duration: "1 month",
+        duration: { en: "1 month", fr: "1 mois" },
         private: true,
 
     },
@@ -122,15 +135,17 @@ const projects = [
     {
         id: 7,
         title: "My_teams",
-        title2: "My_teams - Client/Server Chat",
+        title2: { en: "My_teams - Client/Server Chat", fr: "My_teams - Messagerie client/serveur" },
         image: myteams,
-        description:
-        "The MyTeams Application Protocol (MAP) is a client-server protocol inspired by collaborative tools such as Microsoft Teams.",
+        description: {
+            en: "The MyTeams Application Protocol (MAP) is a client-server protocol inspired by collaborative tools such as Microsoft Teams.",
+            fr: "Le MyTeams Application Protocol (MAP) est un protocole client-serveur inspiré d'outils collaboratifs comme Microsoft Teams.",
+        },
         technologies: [
         technologies.Rust
         ],
         team: 3,
-        duration: "1 month",
+        duration: { en: "1 month", fr: "1 mois" },
         private: true,
 
     },
@@ -140,14 +155,16 @@ const projects = [
         title: "My_hunter",
         title2: "My_hunter",
         image: hunter,
-        description:
-        "A 2D game project made in C and CSFML. Players must shoot moving targets while improving their score and reflexes.",
+        description: {
+            en: "A 2D game project made in C and CSFML. Players must shoot moving targets while improving their score and reflexes.",
+            fr: "Un jeu 2D réalisé en C avec la CSFML. Le joueur doit tirer sur des cibles mobiles pour améliorer son score et ses réflexes.",
+        },
         technologies: [
         technologies.C,
         technologies.Sfml,
         ],
         team: 1,
-        duration: "2 weeks",
+        duration: { en: "2 weeks", fr: "2 semaines" },
         private: true,
 
     },

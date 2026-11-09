@@ -1,9 +1,11 @@
 import { Wifi, Volume2, BatteryFull } from "lucide-react";
 import useClock from "../../hooks/useClock";
+import useLanguage from "../../i18n/LanguageContext";
 
 function Taskbar({ onHome }) {
 
     const now = useClock();
+    const { lang, toggleLang, t } = useLanguage();
 
     const time = now.toLocaleTimeString("fr-FR", {
         hour: "2-digit",
@@ -31,6 +33,24 @@ function Taskbar({ onHome }) {
         </button>
 
         <div className="flex items-center gap-4">
+
+        <button
+            type="button"
+            onClick={toggleLang}
+            aria-label={t({ en: "Passer en français", fr: "Switch to English" })}
+            className="flex items-center rounded-full bg-slate-700 hover:bg-slate-600 transition-colors p-1 text-xs font-semibold cursor-pointer"
+        >
+            {["en", "fr"].map((code) => (
+                <span
+                    key={code}
+                    className={`px-2 py-1 rounded-full uppercase transition-colors ${
+                        lang === code ? "bg-slate-200 text-slate-900" : "text-slate-300"
+                    }`}
+                >
+                    {code}
+                </span>
+            ))}
+        </button>
 
         <div className="hidden sm:flex items-center gap-3">
             <BatteryFull size={18} className="text-white" />

@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import useLanguage from "../../i18n/LanguageContext";
 
 const themes = {
     about: {
@@ -34,14 +35,40 @@ const themes = {
     },
 };
 
+const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 function Window({ title,content,width,height,theme,onClose,}) {
 
     const currentTheme = themes[theme];
+    const { t } = useLanguage();
+    const dialogRef = useRef(null);
 
-    // touche Échap => ferme la fenêtre
+    // à l'ouverture : focus sur la fenêtre, à la fermeture : on rend le focus (ex: au dossier cliqué)
+    useEffect(() => {
+        const previous = document.activeElement;
+        dialogRef.current?.focus();
+        return () => previous?.focus?.();
+    }, []);
+
+    // touche Échap => ferme la fenêtre, Tab => le focus reste dans la fenêtre
     useEffect(() => {
         const onKeyDown = (e) => {
             if (e.key === "Escape") onClose();
+            if (e.key !== "Tab" || !dialogRef.current) return;
+
+            const focusables = dialogRef.current.querySelectorAll(FOCUSABLE);
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            const inside = dialogRef.current.contains(document.activeElement);
+
+            if (e.shiftKey && (!inside || document.activeElement === first || document.activeElement === dialogRef.current)) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && (!inside || document.activeElement === last)) {
+                e.preventDefault();
+                first.focus();
+            }
         };
         window.addEventListener("keydown", onKeyDown);
         return () => window.removeEventListener("keydown", onKeyDown);
@@ -58,11 +85,13 @@ function Window({ title,content,width,height,theme,onClose,}) {
         >
 
         <motion.div
+            ref={dialogRef}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label={title}
             onClick={(e) => e.stopPropagation()}
-            className={`${currentTheme.background} ${currentTheme.border} flex flex-col w-full h-full md:w-(--w) md:h-(--h) md:max-w-full md:max-h-full md:rounded-xl md:border shadow-2xl overflow-hidden`}
+            className={`${currentTheme.background} ${currentTheme.border} flex flex-col w-full h-full md:w-(--w) md:h-(--h) md:max-w-full md:max-h-full md:rounded-xl md:border shadow-2xl overflow-hidden outline-none`}
             style={{ "--w": width, "--h": height }}
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -77,7 +106,7 @@ function Window({ title,content,width,height,theme,onClose,}) {
             <button
                 type="button"
                 onClick={onClose}
-                aria-label="Close"
+                aria-label={t({ en: "Close", fr: "Fermer" })}
                 className="text-white hover:text-red-400 transition-colors p-2 rounded-md"
             >
                 <X size={22} />

@@ -3,7 +3,7 @@ import fundamentals from "./fundamentals";
 
 const skills = [
   {
-    category: "Languages",
+    category: { en: "Languages", fr: "Langages" },
     items: [
       technologies.C,
       technologies["C++"],
@@ -27,7 +27,7 @@ const skills = [
   },
 
   {
-    category: "Tools",
+    category: { en: "Tools", fr: "Outils" },
     items: [
       technologies.Git,
       technologies.Github,
@@ -47,7 +47,7 @@ const skills = [
   },
 
   {
-    category: "Databases",
+    category: { en: "Databases", fr: "Bases de données" },
     items: [
       technologies.Oracle,
       technologies.Sql,
@@ -55,7 +55,7 @@ const skills = [
   },
 
   {
-    category: "Computer Science",
+    category: { en: "Computer Science", fr: "Informatique" },
     items: [
       fundamentals.Algorithms,
       fundamentals.DataStructures,

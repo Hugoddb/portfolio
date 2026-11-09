@@ -6,7 +6,7 @@ import ContactWindow from "../components/windows/ContactWindow";
 
 export const windowContent = {
   about: {
-    title: "ABOUT",
+    title: { en: "ABOUT", fr: "À PROPOS" },
     component: AboutWindow,
     width: "70vw",
     height: "70vh",
@@ -14,7 +14,7 @@ export const windowContent = {
   },
 
   projects: {
-    title: "PROJECTS",
+    title: { en: "PROJECTS", fr: "PROJETS" },
     component: ProjectsWindow,
     width: "80vw",
     height: "80vh",
@@ -30,7 +30,7 @@ export const windowContent = {
   },
 
   skills: {
-    title: "SKILLS",
+    title: { en: "SKILLS", fr: "COMPÉTENCES" },
     component: SkillsWindow,
     width: "70vw",
     height: "80vh",
@@ -38,7 +38,7 @@ export const windowContent = {
   },
 
   experiences: {
-    title: "EXPERIENCES",
+    title: { en: "EXPERIENCES", fr: "EXPÉRIENCES" },
     component: ExperienceWindow,
     width: "70vw",
     height: "85vh",

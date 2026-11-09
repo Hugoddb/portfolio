@@ -83,7 +83,7 @@ export const technologies = {
   },
 
   Github: {
-    name: "Github",
+    name: "GitHub",
     icon: github,
   },
 
@@ -93,7 +93,7 @@ export const technologies = {
   },
 
   JavaScript: {
-    name: "Javascript",
+    name: "JavaScript",
     icon: javascript,
   },
 
@@ -103,7 +103,7 @@ export const technologies = {
   },
 
   VsCode: {
-    name: "VsCode",
+    name: "VS Code",
     icon: vscode,
   },
 

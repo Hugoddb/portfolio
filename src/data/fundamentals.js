@@ -9,37 +9,37 @@ import problemSolving from "../assets/fundamentals/probleme.png";
 const fundamentals = {
 
     Algorithms: {
-      name: "Algorithms",
+      name: { en: "Algorithms", fr: "Algorithmique" },
       icon: algorithms,
     },
   
     DataStructures: {
-      name: "Data Structures",
+      name: { en: "Data Structures", fr: "Structures de données" },
       icon: dataStructures,
     },
   
     ObjectOrientedProgramming: {
-      name: "OOP",
+      name: { en: "OOP", fr: "POO" },
       icon: oop,
     },
   
     OperatingSystems: {
-      name: "Operating Systems",
+      name: { en: "Operating Systems", fr: "Systèmes d'exploitation" },
       icon: operatingSystems,
     },
   
     Networking: {
-      name: "Networking",
+      name: { en: "Networking", fr: "Réseaux" },
       icon: networking,
     },
   
     DatabaseDesign: {
-      name: "Database Design",
+      name: { en: "Database Design", fr: "Conception de BDD" },
       icon: databaseDesign,
     },
   
     ProblemSolving: {
-      name: "Problem Solving",
+      name: { en: "Problem Solving", fr: "Résolution de problèmes" },
       icon: problemSolving,
     },
   };

@@ -4,18 +4,20 @@ import Taskbar from "./TaskBar";
 import background from "../../assets/images/background.png";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
+import terminalIcon from "../../assets/icons/terminal.png";
 import AppIcon from "./AppIcon";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { windowContent } from "../../data/windowContent";
 import { links } from "../../data/links";
+import useLanguage from "../../i18n/LanguageContext";
 
 const folders = [
-    { id: "about", name: "About" },
-    { id: "experiences", name: "Experiences" },
-    { id: "projects", name: "Projects" },
-    { id: "skills", name: "Skills" },
-    { id: "contact", name: "Contact" },
+    { id: "about", name: { en: "About", fr: "À propos" } },
+    { id: "experiences", name: { en: "Experiences", fr: "Expériences" } },
+    { id: "projects", name: { en: "Projects", fr: "Projets" } },
+    { id: "skills", name: { en: "Skills", fr: "Compétences" } },
+    { id: "contact", name: "Contact", icon: terminalIcon },
 ];
 
 const apps = [
@@ -40,6 +42,7 @@ const getWindowFromHash = () => {
 function Desktop() {
 
     const [openWindow, setOpenWindow] = useState(getWindowFromHash);
+    const { t } = useLanguage();
 
     // bouton "retour" du navigateur / téléphone => ferme la fenêtre
     useEffect(() => {
@@ -88,7 +91,7 @@ function Desktop() {
             </h1>
 
             <h2 className="text-slate-600 text-base sm:text-lg font-normal mt-2">
-                Developer / EPITECH Lyon
+                {t({ en: "Developer", fr: "Développeur" })} / EPITECH Lyon
             </h2>
 
         </div>
@@ -116,7 +119,7 @@ function Desktop() {
     {ActiveComponent && (
     <Window
         key={openWindow}
-        title={currentWindow.title}
+        title={t(currentWindow.title)}
         content={<ActiveComponent />}
         width={currentWindow.width}
         height={currentWindow.height}

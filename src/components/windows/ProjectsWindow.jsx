@@ -1,7 +1,8 @@
 import { useState } from "react";
 import projects from "../../data/projects";
 import { FaGithub, FaLock } from "react-icons/fa";
-import { FolderCode } from "lucide-react";
+import { FolderCode, ExternalLink } from "lucide-react";
+import useLanguage from "../../i18n/LanguageContext";
 
 function ProjectThumbnail({ project, className }) {
     if (project.image) {
@@ -24,6 +25,7 @@ function ProjectThumbnail({ project, className }) {
 function ProjectsWindow() {
 
     const [selectedProject, setSelectedProject] = useState(projects[0]);
+    const { t } = useLanguage();
 
     return (
       <div className="h-full flex flex-col md:flex-row">
@@ -32,7 +34,7 @@ function ProjectsWindow() {
 
       <div className="hidden md:block p-4 border-b border-slate-700 mb-3">
         <h2 className="text-white text-xl font-semibold">
-          Projects
+          {t({ en: "Projects", fr: "Projets" })}
         </h2>
       </div>
 
@@ -63,7 +65,7 @@ function ProjectsWindow() {
         <div key={selectedProject.id} className="flex-1 min-h-0 p-5 md:p-8 overflow-y-auto">
 
           <h1 className="text-2xl md:text-3xl text-white font-bold">
-            {selectedProject.title2}
+            {t(selectedProject.title2)}
           </h1>
 
           {selectedProject.image && (
@@ -83,7 +85,7 @@ function ProjectsWindow() {
           )}
 
           <p className="mt-5 md:mt-6 text-slate-300 leading-7 md:leading-8">
-            {selectedProject.description}
+            {t(selectedProject.description)}
           </p>
 
           <div className="flex flex-wrap gap-3 md:gap-4 mt-6">
@@ -91,14 +93,16 @@ function ProjectsWindow() {
             <div className="bg-slate-700 text-white text-sm md:text-base px-4 py-2 md:px-5 md:py-3 rounded-xl">
             <p>
               {selectedProject.team === 1
-                ? "👤  Solo Project"
-                : `👥  Team Project (${selectedProject.team})`}
+                ? t({ en: "👤  Solo Project", fr: "👤  Projet solo" })
+                : `👥  ${t({ en: "Team Project", fr: "Projet d'équipe" })} (${selectedProject.team})`}
             </p>
             </div>
 
-            <div className="bg-slate-700 text-white text-sm md:text-base px-4 py-2 md:px-5 md:py-3 rounded-xl">
-              ⏱️ {selectedProject.duration}
-            </div>
+            {selectedProject.duration && (
+              <div className="bg-slate-700 text-white text-sm md:text-base px-4 py-2 md:px-5 md:py-3 rounded-xl">
+                ⏱️ {t(selectedProject.duration)}
+              </div>
+            )}
 
           </div>
 
@@ -120,12 +124,24 @@ function ProjectsWindow() {
           ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-3">
+
+          {selectedProject.demo && (
+            <a
+              href={selectedProject.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex text-white items-center gap-2 bg-blue-600 hover:bg-blue-700 transition px-5 py-3 rounded-lg"
+            >
+              <ExternalLink size={18} />
+              {t({ en: "Live demo", fr: "Voir en ligne" })}
+            </a>
+          )}
 
           {selectedProject.private ? (
             <div className="inline-flex items-center gap-2 bg-slate-700 text-slate-300 px-5 py-3 rounded-lg cursor-default">
               <FaLock />
-              Private Repository
+              {t({ en: "Private Repository", fr: "Dépôt privé" })}
             </div>
           ) : (
             <a

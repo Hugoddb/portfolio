@@ -9,12 +9,14 @@ const experiences = [
     {
         year: "2025",
         logo: inetum,
-        title: "Software Engineering Intern",
+        title: { en: "Software Engineering Intern", fr: "Stagiaire Ingénieur Logiciel" },
         company: "Inetum",
-        period: "Jul 2025 - Dec 2025",
+        period: { en: "Jul 2025 - Dec 2025", fr: "Juil. 2025 - Déc. 2025" },
 
-        description:
-        "Worked on Python tools and data validation around JD Edwards while collaborating with experienced developers.",
+        description: {
+            en: "Worked on Python tools and data validation around JD Edwards while collaborating with experienced developers.",
+            fr: "Développement d'outils Python et validation de données autour de JD Edwards, en collaboration avec des développeurs expérimentés.",
+        },
 
         technologies: [
         technologies.Python,
@@ -28,12 +30,14 @@ const experiences = [
     {
         year: "2024",
         logo: epitech,
-        title: "Computer Science",
+        title: { en: "Computer Science", fr: "Informatique" },
         company: "Epitech Lyon",
-        period: "Sept 2024 - Present",
+        period: { en: "Sept 2024 - Present", fr: "Sept. 2024 - Aujourd'hui" },
 
-        description:
-        "I am currently a computer science student at Epitech.",
+        description: {
+            en: "I am currently a computer science student at Epitech.",
+            fr: "Je suis actuellement étudiant en informatique à Epitech.",
+        },
 
         technologies: [
             technologies.C,
@@ -49,34 +53,40 @@ const experiences = [
     {
         year: "2022",
         logo: ucb,
-        title: "Mathematics & Computer Science Studies",
+        title: { en: "Mathematics & Computer Science Studies", fr: "Licence Mathématiques & Informatique" },
         company: "Université Claude Bernard Lyon 1",
         period: "2022 - 2024",
 
-        description:
-        "Studied mathematics and computer science for two years before joining Epitech to specialize in software engineering."
+        description: {
+            en: "Studied mathematics and computer science for two years before joining Epitech to specialize in software engineering.",
+            fr: "Deux années d'études en mathématiques et informatique avant de rejoindre Epitech pour me spécialiser dans le développement logiciel.",
+        }
     },
 
     {
         year: "2021",
         logo: althays,
-        title: "Discovery Internship",
+        title: { en: "Discovery Internship", fr: "Stage de découverte" },
         company: "Althays",
-        period: "Mar 2021",
+        period: { en: "Mar 2021", fr: "Mars 2021" },
 
-        description:
-        "Discovered software engineering and office workflows.",
+        description: {
+            en: "Discovered software engineering and office workflows.",
+            fr: "Découverte du développement logiciel et du fonctionnement d'une entreprise.",
+        },
     },
 
     {
         year: "2019",
         logo: lombardie,
-        title: "Engineering Internship",
+        title: { en: "Engineering Internship", fr: "Stage en ingénierie" },
         company: "Lombardie",
-        period: "Apr 2019",
+        period: { en: "Apr 2019", fr: "Avr. 2019" },
 
-        description:
-        "Participated in testing procedures and result analysis.",
+        description: {
+            en: "Participated in testing procedures and result analysis.",
+            fr: "Participation aux procédures de test et à l'analyse des résultats.",
+        },
     },
 ];
 

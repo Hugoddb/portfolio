@@ -5,6 +5,7 @@ import background from "../../assets/images/background.png";
 import projects from "../../data/projects";
 import experiences from "../../data/experiences";
 import useClock from "../../hooks/useClock";
+import useLanguage from "../../i18n/LanguageContext";
 
 const bootLines = [
     "Started kernel (Epitech Lyon edition)",
@@ -27,6 +28,7 @@ function BootScreen({ onDone }) {
     const [phase, setPhase] = useState(() => (prefersReducedMotion() ? "lock" : "boot"));
     const [visibleLines, setVisibleLines] = useState(0);
     const now = useClock();
+    const { lang, t } = useLanguage();
 
     // affiche les lignes une par une, puis passe à l'écran de verrouillage
     useEffect(() => {
@@ -55,7 +57,7 @@ function BootScreen({ onDone }) {
         minute: "2-digit",
     });
 
-    const date = now.toLocaleDateString("en-GB", {
+    const date = now.toLocaleDateString(lang === "fr" ? "fr-FR" : "en-GB", {
         weekday: "long",
         day: "numeric",
         month: "long",
@@ -97,7 +99,7 @@ function BootScreen({ onDone }) {
                     }}
                     className="absolute bottom-6 right-6 text-slate-500 hover:text-white transition-colors text-sm"
                 >
-                    Skip ›
+                    {t({ en: "Skip", fr: "Passer" })} ›
                 </button>
             </motion.div>
         ) : (
@@ -106,7 +108,7 @@ function BootScreen({ onDone }) {
                 type="button"
                 autoFocus
                 onClick={onDone}
-                aria-label="Unlock and enter the portfolio"
+                aria-label={t({ en: "Unlock and enter the portfolio", fr: "Déverrouiller et entrer dans le portfolio" })}
                 className="absolute inset-0 w-full h-full text-white cursor-pointer outline-none"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -140,8 +142,8 @@ function BootScreen({ onDone }) {
 
                         <p className="flex items-center gap-2 text-sm text-white/80 animate-pulse">
                             <Lock size={14} />
-                            <span className="md:hidden">Tap to enter</span>
-                            <span className="hidden md:inline">Click or press any key to enter</span>
+                            <span className="md:hidden">{t({ en: "Tap to enter", fr: "Touchez pour entrer" })}</span>
+                            <span className="hidden md:inline">{t({ en: "Click or press any key to enter", fr: "Cliquez ou appuyez sur une touche pour entrer" })}</span>
                         </p>
                     </div>
 
