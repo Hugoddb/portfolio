@@ -1,35 +1,20 @@
-import { useEffect, useState } from "react";
 import { Wifi, Volume2, BatteryFull } from "lucide-react";
+import useClock from "../../hooks/useClock";
 
 function Taskbar({ onHome }) {
 
-    const [time, setTime] = useState("");
-    const [date, setDate] = useState("");
+    const now = useClock();
 
-    //récupere l'heure et la date
-    useEffect(() => {
-    const updateDateTime = () => {
-        const now = new Date();
+    const time = now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
 
-        setTime(
-        now.toLocaleTimeString("fr-FR", {
-            hour: "2-digit",
-            minute: "2-digit",
-        })
-        );
-
-        setDate(
-        now.toLocaleDateString("fr-FR", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-        })
-        );
-    };
-    updateDateTime();
-    const interval = setInterval(updateDateTime, 1000);
-    return () => clearInterval(interval);
-    }, []);
+    const date = now.toLocaleDateString("fr-FR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+    });
 
     return (
         <div className="fixed bottom-0 left-0 z-50 w-full h-14 bg-slate-900 border-t border-slate-700 flex items-center justify-between px-3 md:px-6">
