@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import { X } from "lucide-react";
 import useLanguage from "../../i18n/LanguageContext";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const themes = {
     about: {
@@ -42,6 +43,12 @@ function Window({ title,content,width,height,theme,onClose,}) {
     const currentTheme = themes[theme];
     const { t } = useLanguage();
     const dialogRef = useRef(null);
+    const overlayRef = useRef(null);
+    const pressedOverlay = useRef(false);
+    const dragControls = useDragControls();
+
+    // fenêtres déplaçables seulement sur ordinateur (en plein écran sur mobile)
+    const canDrag = useMediaQuery("(min-width: 768px)");
 
     // à l'ouverture : focus sur la fenêtre, à la fermeture : on rend le focus (ex: au dossier cliqué)
     useEffect(() => {
@@ -76,8 +83,13 @@ function Window({ title,content,width,height,theme,onClose,}) {
 
     return (
         <motion.div
+            ref={overlayRef}
             className="fixed inset-x-0 top-0 bottom-14 z-40 flex items-center justify-center md:p-6 bg-slate-950/30"
-            onClick={onClose}
+            // ferme seulement si le clic commence ET finit sur le fond (pas à la fin d'un déplacement)
+            onPointerDown={(e) => (pressedOverlay.current = e.target === e.currentTarget)}
+            onClick={(e) => {
+                if (pressedOverlay.current && e.target === e.currentTarget) onClose();
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -95,19 +107,27 @@ function Window({ title,content,width,height,theme,onClose,}) {
             style={{ "--w": width, "--h": height }}
             initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 16 }}
+            exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
+            drag={canDrag}
+            dragListener={false}
+            dragControls={dragControls}
+            dragConstraints={overlayRef}
+            dragElastic={0}
+            dragMomentum={false}
         >
 
         <div
-        className={`h-12 shrink-0 ${currentTheme.header} flex items-center justify-between pl-4 pr-2`}
+        className={`h-12 shrink-0 ${currentTheme.header} flex items-center justify-between pl-4 pr-2 ${canDrag ? "cursor-grab active:cursor-grabbing select-none" : ""}`}
+        onPointerDown={(e) => canDrag && dragControls.start(e)}
         >
             <span className="text-white font-medium uppercase tracking-wide"> {title} </span>
             <button
                 type="button"
                 onClick={onClose}
+                onPointerDown={(e) => e.stopPropagation()}
                 aria-label={t({ en: "Close", fr: "Fermer" })}
-                className="text-white hover:text-red-400 transition-colors p-2 rounded-md"
+                className="text-white hover:text-red-400 transition-colors p-2 rounded-md cursor-pointer"
             >
                 <X size={22} />
             </button>
