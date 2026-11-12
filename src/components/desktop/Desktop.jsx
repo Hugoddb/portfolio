@@ -5,6 +5,8 @@ import StarryBackground from "./StarryBackground";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
 import terminalIcon from "../../assets/icons/terminal.png";
+import pdfIcon from "../../assets/icons/pdf.svg";
+import browserIcon from "../../assets/icons/browser.svg";
 import AppIcon from "./AppIcon";
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -18,6 +20,7 @@ const folders = [
     { id: "projects", name: { en: "Projects", fr: "Projets" } },
     { id: "skills", name: { en: "Skills", fr: "Compétences" } },
     { id: "contact", name: "Contact", icon: terminalIcon },
+    { id: "browser", name: "Internet", icon: browserIcon },
 ];
 
 const apps = [
@@ -32,6 +35,12 @@ const apps = [
         url: links.linkedin,
     },
 ];
+
+const cvApp = {
+    name: "Cv.pdf",
+    icon: pdfIcon,
+    url: "/cv/Hugo_de_Dreux-Breze_CV.pdf",
+};
 
 // lit la fenêtre à ouvrir depuis l'URL (ex: /#projects)
 const getWindowFromHash = () => {
@@ -76,13 +85,18 @@ function Desktop() {
 
         <StarryBackground className="absolute inset-0 -z-10" />
 
-        <div className="hidden md:flex absolute top-8 right-8 flex-col gap-6">
-        {apps.map((app) => (
-            <AppIcon
-            key={app.name}
-            {...app}
-            />
-        ))}
+        {/* icônes rangées façon vrai PC (desktop uniquement) : dossiers à gauche, apps à droite */}
+        <div className="hidden md:flex absolute top-6 left-6 bottom-20 flex-col flex-wrap content-start gap-4">
+            {folders.map((folder) => (
+                <FolderIcon key={folder.id} folder={folder} onClick={handleFolderClick} />
+            ))}
+        </div>
+
+        <div className="hidden md:flex absolute top-6 right-6 flex-col gap-4">
+            {apps.map((app) => (
+                <AppIcon key={app.name} {...app} widthClassName="md:w-30" />
+            ))}
+            <AppIcon {...cvApp} widthClassName="md:w-30" />
         </div>
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
@@ -97,7 +111,7 @@ function Desktop() {
 
         </div>
 
-    <div className="grid grid-cols-4 gap-y-4 px-3 mb-16 md:flex md:justify-center md:gap-20 md:px-0 md:mb-50">
+    <div className="grid grid-cols-4 gap-y-4 px-3 mb-16 md:hidden">
         {folders.map((folder) => (
         <FolderIcon
             key={folder.id}
@@ -106,11 +120,12 @@ function Desktop() {
         />
         ))}
 
+        <AppIcon {...cvApp} />
+
         {apps.map((app) => (
             <AppIcon
             key={app.name}
             {...app}
-            className="md:hidden"
             labelClassName="text-white"
             />
         ))}

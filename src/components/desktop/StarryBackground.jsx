@@ -8,7 +8,9 @@ const LAYERS = [
 ];
 
 function createStars(width, height) {
-    const area = width * height;
+    // un peu plus dense sur petit écran, sinon le ciel paraît vide sur téléphone
+    const boost = width < 768 ? 1.8 : 1;
+    const area = width * height * boost;
     return LAYERS.flatMap((layer) =>
         Array.from({ length: Math.round(area * layer.density) }, () => ({
             x: Math.random() * width,
@@ -29,25 +31,40 @@ function StarryBackground({ className = "" }) {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // souris = parallaxe ; écran tactile = lente dérive automatique
+        const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
         let width = 0;
         let height = 0;
+        let fieldHeight = 0; // hauteur sur laquelle les étoiles sont réparties
         let stars = [];
         let frame = 0;
         const target = { x: 0, y: 0 };
         const current = { x: 0, y: 0 };
 
         const resize = () => {
-            const dpr = window.devicePixelRatio || 1;
-            width = canvas.clientWidth;
+            // limité à 2 pour ne pas surcharger les téléphones à très haute densité
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const newWidth = canvas.clientWidth;
             height = canvas.clientHeight;
-            canvas.width = width * dpr;
+            canvas.width = newWidth * dpr;
             canvas.height = height * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            stars = createStars(width, height);
+
+            // sur mobile la barre d'adresse qui apparaît/disparaît change la hauteur :
+            // on garde les mêmes étoiles tant que la largeur ne change pas (pas de "saut")
+            if (newWidth !== width || height > fieldHeight) {
+                width = newWidth;
+                fieldHeight = Math.max(height, window.screen?.height || 0);
+                stars = createStars(width, fieldHeight);
+            }
         };
 
         const draw = (time) => {
+            if (!hasMouse) {
+                target.x = Math.sin(time * 0.00007);
+                target.y = Math.cos(time * 0.00005);
+            }
             current.x += (target.x - current.x) * 0.05;
             current.y += (target.y - current.y) * 0.05;
 
@@ -56,7 +73,8 @@ function StarryBackground({ className = "" }) {
             for (const s of stars) {
                 // Décalage selon la souris, avec retour de l'autre côté de l'écran.
                 const x = (((s.x + current.x * s.depth) % width) + width) % width;
-                const y = (((s.y + current.y * s.depth) % height) + height) % height;
+                const y = (((s.y + current.y * s.depth) % fieldHeight) + fieldHeight) % fieldHeight;
+                if (y > height) continue;
                 const twinkle = reduceMotion ? 1 : 0.75 + 0.25 * Math.sin(time * 0.001 * s.speed + s.phase);
                 ctx.globalAlpha = s.alpha * twinkle;
                 ctx.beginPath();
@@ -69,6 +87,7 @@ function StarryBackground({ className = "" }) {
         };
 
         const onPointerMove = (e) => {
+            if (e.pointerType !== "mouse") return;
             // Position de la souris entre -1 et 1, sens inverse pour l'effet de profondeur.
             target.x = -((e.clientX / window.innerWidth) * 2 - 1);
             target.y = -((e.clientY / window.innerHeight) * 2 - 1);
@@ -84,7 +103,7 @@ function StarryBackground({ className = "" }) {
         else frame = requestAnimationFrame(draw);
 
         window.addEventListener("resize", onResize);
-        if (!reduceMotion) window.addEventListener("pointermove", onPointerMove);
+        if (!reduceMotion && hasMouse) window.addEventListener("pointermove", onPointerMove);
 
         return () => {
             cancelAnimationFrame(frame);

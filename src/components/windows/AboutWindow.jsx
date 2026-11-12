@@ -1,7 +1,12 @@
-import { MapPin, Cake, Download, Circle } from "lucide-react";
+import { MapPin, Cake, GraduationCap, FolderGit2, FileText, Mail } from "lucide-react";
 import useLanguage from "../../i18n/LanguageContext";
+import projects from "../../data/projects";
+import { links } from "../../data/links";
+import githubIcon from "../../assets/icons/github.webp";
+import linkedinIcon from "../../assets/icons/linkedin.webp";
 
 const BIRTH_DATE = new Date(2004, 8, 13); // 13 septembre 2004
+const CV_URL = "/cv/Hugo_de_Dreux-Breze_CV.pdf";
 
 // calcule l'âge à partir de la date de naissance
 const getAge = () => {
@@ -13,124 +18,147 @@ const getAge = () => {
     return birthdayPassed ? age : age - 1;
 };
 
+const passions = [
+    { emoji: "💻", label: { en: "Development", fr: "Développement" } },
+    { emoji: "⚽", label: "Football" },
+    { emoji: "🎬", label: { en: "Cinema", fr: "Cinéma" } },
+    { emoji: "🎵", label: { en: "Music", fr: "Musique" } },
+];
+
 function AboutWindow() {
 
     const { t } = useLanguage();
+
+    const facts = [
+        { icon: MapPin, label: { en: "City", fr: "Ville" }, value: "Lyon, France" },
+        { icon: Cake, label: { en: "Age", fr: "Âge" }, value: `${getAge()} ${t({ en: "years old", fr: "ans" })}` },
+        { icon: GraduationCap, label: { en: "School", fr: "École" }, value: t({ en: "Epitech · 3rd year", fr: "Epitech · 3e année" }) },
+        { icon: FolderGit2, label: { en: "Projects", fr: "Projets" }, value: `${projects.length}`, href: "#projects" },
+    ];
 
     return (
         <div className="text-white p-5 md:p-8">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
+            {/* colonne profil */}
+            <aside className="lg:w-72 shrink-0 lg:border-r lg:border-slate-700 lg:pr-10 flex flex-col items-center lg:items-start text-center lg:text-left">
 
-            <div className="lg:w-80 lg:border-r lg:border-slate-700 lg:pr-10 flex flex-col">
+                <h1 className="font-title text-3xl md:text-4xl font-bold leading-tight">
+                    Hugo
+                    <br />
+                    de Dreux-Brézé
+                </h1>
 
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight">
-                Hugo
-                <br />
-                de Dreux-Brézé
-            </h1>
+                <h2 className="text-sky-400 text-lg md:text-xl mt-2">
+                    {t({ en: "Full Stack Developer", fr: "Développeur Full Stack" })}
+                </h2>
 
-            <h2 className="text-blue-400 text-lg md:text-xl mt-3">
-                {t({ en: "Full Stack Developer", fr: "Développeur Full Stack" })}
-            </h2>
+                <div className="inline-flex items-center gap-2 mt-4 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-sm">
+                    <span className="relative flex w-2 h-2">
+                        <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-75" />
+                        <span className="relative w-2 h-2 rounded-full bg-green-400" />
+                    </span>
+                    {t({ en: "Available for internship", fr: "Disponible pour un stage" })}
+                </div>
 
-            <div className="flex items-center gap-2 mt-5 text-green-400">
-                <Circle
-                size={10}
-                fill="currentColor"
-                className="animate-pulse"
-                />
+                <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-6">
+                    <a
+                        href={CV_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 transition px-4 py-2.5 rounded-lg font-medium text-sm"
+                    >
+                        <FileText size={16} />
+                        {t({ en: "View CV", fr: "Voir le CV" })}
+                    </a>
+                    <a
+                        href="#contact"
+                        className="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 transition px-4 py-2.5 rounded-lg font-medium text-sm"
+                    >
+                        <Mail size={16} />
+                        Contact
+                    </a>
+                </div>
 
-                <span>{t({ en: "Available for internship", fr: "Disponible pour un stage" })}</span>
-            </div>
+                <div className="flex gap-3 mt-4">
+                    {[
+                        { name: "GitHub", icon: githubIcon, url: links.github },
+                        { name: "LinkedIn", icon: linkedinIcon, url: links.linkedin },
+                    ].map((s) => (
+                        <a
+                            key={s.name}
+                            href={s.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={s.name}
+                            className="p-2 rounded-lg bg-slate-700/60 hover:bg-slate-600 transition"
+                        >
+                            <img src={s.icon} alt="" className="w-6 h-6" />
+                        </a>
+                    ))}
+                </div>
+            </aside>
 
-            <div className="pt-6 lg:pt-12">
-
-                <a
-                href="/cv/Hugo_de_Dreux-Breze_CV.pdf"
-                download="CV_Hugo_de_Dreux-Breze.pdf"
-                className="w-fit inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-medium"
-                >
-                <Download size={18} />
-                {t({ en: "Download CV", fr: "Télécharger le CV" })}
-                </a>
-
-            </div>
-
-
-            </div>
-
-            <div className="flex-1 flex flex-col">
+            {/* contenu */}
+            <div className="flex-1 min-w-0 flex flex-col gap-8 md:gap-10">
 
             <section>
                 <h3 className="text-xl md:text-2xl font-semibold mb-4">
-                {t({ en: "About Me", fr: "À propos de moi" })}
+                    {t({ en: "About Me", fr: "À propos de moi" })}
                 </h3>
 
-                <p className="text-slate-300 leading-7 md:leading-8 max-w-3xl">
-                {t({
-                    en: "I am a third-year student at Epitech Lyon passionate about software development and modern user interfaces. I enjoy building clean, intuitive and high-performance applications while continuously learning new technologies.",
-                    fr: "Étudiant en troisième année à Epitech Lyon, je suis passionné par le développement logiciel et les interfaces modernes. J'aime concevoir des applications claires, intuitives et performantes, tout en continuant à apprendre de nouvelles technologies.",
-                })}
-                </p>
+                <div className="space-y-3 text-slate-300 leading-7 md:leading-8 max-w-3xl">
+                    <p>
+                        {t({
+                            en: "I am a third-year student at Epitech Lyon passionate about software development and modern user interfaces. I enjoy building clean, intuitive and high-performance applications while continuously learning new technologies.",
+                            fr: "Étudiant en troisième année à Epitech Lyon, je suis passionné par le développement logiciel et les interfaces modernes. J'aime concevoir des applications claires, intuitives et performantes, tout en continuant à apprendre de nouvelles technologies.",
+                        })}
+                    </p>
+                    <p>
+                        {t({
+                            en: "After two years of maths and computer science at Université Lyon 1, I joined Epitech and completed a 6-month internship at Inetum, working on Python tools and data validation.",
+                            fr: "Après deux ans de licence maths-info à l'Université Lyon 1, j'ai rejoint Epitech et réalisé un stage de 6 mois chez Inetum, sur des outils Python et de la validation de données.",
+                        })}
+                    </p>
+                </div>
             </section>
 
-            <section className="mt-8 md:mt-10">
-
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-                <div className="bg-slate-700 rounded-xl px-5 py-4 flex items-center gap-4">
-
-                    <MapPin className="text-blue-400" />
-
-                    <div>
-                    <p className="text-sm text-slate-400">{t({ en: "City", fr: "Ville" })}</p>
-                    <p className="font-medium"> Lyon, France</p>
-                    </div>
-
+            <section>
+                <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
+                    {facts.map(({ icon: Icon, label, value, href }) => {
+                        const Tag = href ? "a" : "div";
+                        return (
+                            <Tag
+                                key={t(label)}
+                                {...(href && { href })}
+                                className={`bg-slate-700/60 border border-slate-600/50 rounded-xl p-4 flex flex-col gap-2 ${href ? "hover:border-sky-400/60 hover:bg-slate-700 transition" : ""}`}
+                            >
+                                <Icon size={20} className="text-sky-400" />
+                                <div>
+                                    <p className="text-xs md:text-sm text-slate-400">{t(label)}</p>
+                                    <p className="font-medium text-sm md:text-base">{value}</p>
+                                </div>
+                            </Tag>
+                        );
+                    })}
                 </div>
-
-                <div className="bg-slate-700 rounded-xl px-5 py-4 flex items-center gap-4">
-
-                    <Cake className="text-blue-400" />
-                    <div>
-                    <p className="text-sm text-slate-400">{t({ en: "Age", fr: "Âge" })}</p>
-                    <p className="font-medium">{getAge()} {t({ en: "years old", fr: "ans" })}</p>
-                    </div>
-
-                </div>
-
-                </div>
-
             </section>
 
-            <section className="mt-8 md:mt-10">
-
+            <section>
                 <h3 className="text-xl md:text-2xl font-semibold mb-5">
-                Passions
+                    Passions
                 </h3>
 
-                <div className="flex flex-wrap justify-start gap-3">
-
-                <div className="bg-slate-600 hover:bg-slate-600 transition px-4 py-2 md:py-3 rounded-full">
-                    💻 {t({ en: "Development", fr: "Développement" })}
-                </div>
-
-                <div className="bg-slate-600 hover:bg-slate-600 transition px-4 py-2 md:py-3 rounded-full">
-                    ⚽ Football
-                </div>
-
-                <div className="bg-slate-600 hover:bg-slate-600 transition px-4 py-2 md:py-3 rounded-full">
-                    🎬 {t({ en: "Cinema", fr: "Cinéma" })}
-                </div>
-
-                <div className="bg-slate-600 hover:bg-slate-600 transition px-4 py-2 md:py-3 rounded-full">
-                    🎵 {t({ en: "Music", fr: "Musique" })}
-                </div>
-
-                </div>
-
+                <ul className="flex flex-wrap gap-3">
+                    {passions.map((p) => (
+                        <li
+                            key={t(p.label)}
+                            className="bg-slate-700/60 border border-slate-600/50 hover:border-sky-400/60 transition px-4 py-2 md:py-2.5 rounded-full text-sm md:text-base"
+                        >
+                            <span aria-hidden="true">{p.emoji}</span> {t(p.label)}
+                        </li>
+                    ))}
+                </ul>
             </section>
             </div>
 

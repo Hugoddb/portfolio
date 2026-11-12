@@ -29,6 +29,12 @@ const themes = {
         border: "border-indigo-500",
     },
 
+    browser: {
+        background: "bg-slate-900",
+        header: "bg-slate-950",
+        border: "border-sky-500",
+    },
+
     experience: {
         background: "bg-slate-900",
         header: "bg-emerald-900",

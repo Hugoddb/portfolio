@@ -1,10 +1,10 @@
-function AppIcon({ name, icon, url, className = "", labelClassName = "text-white" }) {
+function AppIcon({ name, icon, url, className = "", labelClassName = "text-white", widthClassName = "md:w-24" }) {
     return (
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className={`flex flex-col items-center gap-1 w-full md:w-24 p-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-sky-400/20 ${className}`}
+        className={`flex flex-col items-center gap-1 w-full ${widthClassName} p-2 rounded-lg cursor-pointer transition-all duration-200 hover:bg-sky-400/20 ${className}`}
       >
         <img
           src={icon}

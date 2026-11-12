@@ -3,6 +3,7 @@ import ProjectsWindow from "../components/windows/ProjectsWindow";
 import SkillsWindow from "../components/windows/SkillsWindow";
 import ExperienceWindow from "../components/windows/ExperienceWindow";
 import ContactWindow from "../components/windows/ContactWindow";
+import BrowserWindow from "../components/windows/BrowserWindow";
 
 export const windowContent = {
   about: {
@@ -43,5 +44,13 @@ export const windowContent = {
     width: "70vw",
     height: "85vh",
     theme: "experience",
+  },
+
+  browser: {
+    title: "Internet",
+    component: BrowserWindow,
+    width: "min(900px, 90vw)",
+    height: "auto",
+    theme: "browser",
   },
 };
