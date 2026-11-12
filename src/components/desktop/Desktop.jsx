@@ -1,7 +1,7 @@
 import FolderIcon from "./FolderIcon";
 import Window from "./Window";
 import Taskbar from "./TaskBar";
-import StarryBackground from "./StarryBackground";
+import background from "../../assets/background.jpg";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
 import terminalIcon from "../../assets/icons/terminal.png";
@@ -83,7 +83,12 @@ function Desktop() {
             className="relative isolate h-dvh w-screen overflow-hidden pb-14 flex flex-col bg-[#050a1c]"
         >
 
-        <StarryBackground className="absolute inset-0 -z-10" />
+        <img
+            src={background}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 h-full w-full object-cover object-bottom pointer-events-none select-none"
+        />
 
         {/* icônes rangées façon vrai PC (desktop uniquement) : dossiers à gauche, apps à droite */}
         <div className="hidden md:flex absolute top-6 left-6 bottom-20 flex-col flex-wrap content-start gap-4">
