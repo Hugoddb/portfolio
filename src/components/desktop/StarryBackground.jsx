@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 
-// Couches d'étoiles : plus la profondeur est grande, plus elles bougent avec la souris.
 const LAYERS = [
     { density: 0.00018, size: [0.4, 0.9], depth: 8 },
     { density: 0.00008, size: [0.8, 1.3], depth: 18 },
@@ -8,7 +7,6 @@ const LAYERS = [
 ];
 
 function createStars(width, height) {
-    // un peu plus dense sur petit écran, sinon le ciel paraît vide sur téléphone
     const boost = width < 768 ? 1.8 : 1;
     const area = width * height * boost;
     return LAYERS.flatMap((layer) =>
@@ -31,19 +29,17 @@ function StarryBackground({ className = "" }) {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        // souris = parallaxe ; écran tactile = lente dérive automatique
         const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
         let width = 0;
         let height = 0;
-        let fieldHeight = 0; // hauteur sur laquelle les étoiles sont réparties
+        let fieldHeight = 0;
         let stars = [];
         let frame = 0;
         const target = { x: 0, y: 0 };
         const current = { x: 0, y: 0 };
 
         const resize = () => {
-            // limité à 2 pour ne pas surcharger les téléphones à très haute densité
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const newWidth = canvas.clientWidth;
             height = canvas.clientHeight;
@@ -51,8 +47,6 @@ function StarryBackground({ className = "" }) {
             canvas.height = height * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-            // sur mobile la barre d'adresse qui apparaît/disparaît change la hauteur :
-            // on garde les mêmes étoiles tant que la largeur ne change pas (pas de "saut")
             if (newWidth !== width || height > fieldHeight) {
                 width = newWidth;
                 fieldHeight = Math.max(height, window.screen?.height || 0);
@@ -71,7 +65,6 @@ function StarryBackground({ className = "" }) {
             ctx.clearRect(0, 0, width, height);
             ctx.fillStyle = "#fff";
             for (const s of stars) {
-                // Décalage selon la souris, avec retour de l'autre côté de l'écran.
                 const x = (((s.x + current.x * s.depth) % width) + width) % width;
                 const y = (((s.y + current.y * s.depth) % fieldHeight) + fieldHeight) % fieldHeight;
                 if (y > height) continue;
@@ -88,7 +81,6 @@ function StarryBackground({ className = "" }) {
 
         const onPointerMove = (e) => {
             if (e.pointerType !== "mouse") return;
-            // Position de la souris entre -1 et 1, sens inverse pour l'effet de profondeur.
             target.x = -((e.clientX / window.innerWidth) * 2 - 1);
             target.y = -((e.clientY / window.innerHeight) * 2 - 1);
         };

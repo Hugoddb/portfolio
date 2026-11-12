@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion'
 import Desktop from './components/desktop/Desktop'
 import BootScreen from './components/desktop/BootScreen'
 
-// le démarrage ne s'affiche qu'une fois par session, et pas si on arrive via un lien direct (#projects...)
 const shouldShowBoot = () => {
   if (window.location.hash) return false
   try {
@@ -20,7 +19,6 @@ function App() {
     try {
       sessionStorage.setItem('booted', '1')
     } catch {
-      // stockage indisponible (navigation privée) : on ignore
     }
     setShowBoot(false)
   }

@@ -5,10 +5,9 @@ import { links } from "../../data/links";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
 
-const BIRTH_DATE = new Date(2004, 8, 13); // 13 septembre 2004
+const BIRTH_DATE = new Date(2004, 8, 13);
 const CV_URL = "/cv/Hugo_de_Dreux-Breze_CV.pdf";
 
-// calcule l'âge à partir de la date de naissance
 const getAge = () => {
     const today = new Date();
     const age = today.getFullYear() - BIRTH_DATE.getFullYear();
@@ -40,7 +39,6 @@ function AboutWindow() {
         <div className="text-white p-5 md:p-8">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
 
-            {/* colonne profil */}
             <aside className="lg:w-72 shrink-0 lg:border-r lg:border-slate-700 lg:pr-10 flex flex-col items-center lg:items-start text-center lg:text-left">
 
                 <h1 className="font-title text-3xl md:text-4xl font-bold leading-tight">
@@ -99,7 +97,6 @@ function AboutWindow() {
                 </div>
             </aside>
 
-            {/* contenu */}
             <div className="flex-1 min-w-0 flex flex-col gap-8 md:gap-10">
 
             <section>

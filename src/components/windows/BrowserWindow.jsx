@@ -2,10 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import useLanguage from "../../i18n/LanguageContext";
 import { technologies } from "../../data/technologies";
 
-// --- réglages du jeu ---
 const HEIGHT = 220;
 const GROUND = 190;
-const LOGO = 30; // taille d'un logo obstacle
+const LOGO = 30;
 const GRAVITY = 0.6;
 const JUMP = -10.5;
 const START_SPEED = 5;
@@ -20,7 +19,6 @@ const COLORS = {
     text: "#cbd5e1",
 };
 
-// petit robot en pixels (1 = corps, 2 = visière)
 const ROBOT = [
     "..1111..",
     ".111111.",
@@ -44,7 +42,7 @@ const readHighScore = () => {
     try { return Number(localStorage.getItem(HS_KEY)) || 0; } catch { return 0; }
 };
 const saveHighScore = (v) => {
-    try { localStorage.setItem(HS_KEY, String(v)); } catch { /* stockage indisponible */ }
+    try { localStorage.setItem(HS_KEY, String(v)); } catch {}
 };
 
 function drawRobot(ctx, x, y, frame) {
@@ -58,7 +56,6 @@ function drawRobot(ctx, x, y, frame) {
     });
 }
 
-// les "cactus" : des logos de langages de programmation
 const LANGUAGES = ["C", "C++", "Python", "JavaScript", "TypeScript", "Rust", "Haskell", "Bash", "Html", "Css", "Sql"]
     .map((key) => technologies[key]?.icon)
     .filter(Boolean)
@@ -71,7 +68,6 @@ const LANGUAGES = ["C", "C++", "Python", "JavaScript", "TypeScript", "Rust", "Ha
 const randomLogo = () => LANGUAGES[Math.floor(Math.random() * LANGUAGES.length)];
 
 function drawObstacle(ctx, o, t) {
-    // les logos volants flottent un peu
     const bob = o.flying ? Math.sin(t / 8) * 3 : 0;
     o.logos.forEach((img, k) => {
         const x = o.x + k * (o.size + 2);
@@ -89,7 +85,7 @@ function OfflineRunner() {
     const { t } = useLanguage();
     const canvasRef = useRef(null);
     const game = useRef(null);
-    const [status, setStatus] = useState("idle"); // idle | running | over
+    const [status, setStatus] = useState("idle");
     const [highScore, setHighScore] = useState(readHighScore);
 
     const reset = () => {
@@ -117,7 +113,6 @@ function OfflineRunner() {
         if (g.y >= GROUND - PLAYER_H) g.vy = JUMP;
     };
 
-    // contrôles clavier : espace / flèche haut
     useEffect(() => {
         const onKey = (e) => {
             if (e.code === "Space" || e.code === "ArrowUp") {
@@ -129,7 +124,6 @@ function OfflineRunner() {
         return () => window.removeEventListener("keydown", onKey);
     });
 
-    // boucle de jeu
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
@@ -155,12 +149,10 @@ function OfflineRunner() {
                 g.score += g.speed / 20;
                 g.speed = Math.min(MAX_SPEED, START_SPEED + g.score / 150);
 
-                // saut
                 g.vy += GRAVITY;
                 g.y = Math.min(GROUND - PLAYER_H, g.y + g.vy);
                 if (g.y === GROUND - PLAYER_H) g.vy = 0;
 
-                // obstacles
                 g.groundOffset = (g.groundOffset + g.speed) % 24;
                 g.obstacles.forEach((o) => (o.x -= g.speed));
                 g.obstacles = g.obstacles.filter((o) => o.x + o.w > -10);
@@ -180,7 +172,6 @@ function OfflineRunner() {
                     g.nextSpawn = Math.max(38, gap - g.speed * 2);
                 }
 
-                // collision (hitbox un peu réduite pour être indulgent)
                 const hit = g.obstacles.some((o) =>
                     px + 4 < o.x + o.w - 2 &&
                     px + PLAYER_W - 4 > o.x + 2 &&
@@ -197,7 +188,6 @@ function OfflineRunner() {
                 }
             }
 
-            // --- rendu ---
             ctx.fillStyle = COLORS.sky;
             ctx.fillRect(0, 0, W, HEIGHT);
 

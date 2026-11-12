@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-// renvoie true si la media query correspond, mis à jour au redimensionnement
 function useMediaQuery(query) {
     const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
 

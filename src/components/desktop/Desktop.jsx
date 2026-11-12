@@ -42,7 +42,6 @@ const cvApp = {
     url: "/cv/Hugo_de_Dreux-Breze_CV.pdf",
 };
 
-// lit la fenêtre à ouvrir depuis l'URL (ex: /#projects)
 const getWindowFromHash = () => {
     const id = window.location.hash.slice(1);
     return windowContent[id] ? id : null;
@@ -53,7 +52,6 @@ function Desktop() {
     const [openWindow, setOpenWindow] = useState(getWindowFromHash);
     const { t } = useLanguage();
 
-    // bouton "retour" du navigateur / téléphone => ferme la fenêtre
     useEffect(() => {
         const onPopState = () => setOpenWindow(getWindowFromHash());
         window.addEventListener("popstate", onPopState);
@@ -90,7 +88,6 @@ function Desktop() {
             className="absolute inset-0 -z-10 h-full w-full object-cover object-bottom pointer-events-none select-none"
         />
 
-        {/* icônes rangées façon vrai PC (desktop uniquement) : dossiers à gauche, apps à droite */}
         <div className="hidden md:flex absolute top-6 left-6 bottom-20 flex-col flex-wrap content-start gap-4">
             {folders.map((folder) => (
                 <FolderIcon key={folder.id} folder={folder} onClick={handleFolderClick} />

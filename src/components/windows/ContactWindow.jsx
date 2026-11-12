@@ -15,11 +15,9 @@ const contacts = [
     { label: "LinkedIn", value: "linkedin.com/in/hugo-de-dreux-brézé", href: links.linkedin, external: true },
 ];
 
-// fenêtres du bureau qu'on peut ouvrir avec "cd" / "open"
 const SECTIONS = ["about", "experiences", "projects", "skills", "browser"];
 
 const openWindow = (id) => {
-    // Desktop écoute "popstate", que le changement de hash déclenche
     window.location.hash = id;
 };
 
@@ -53,7 +51,6 @@ function ContactList({ t }) {
     );
 }
 
-// chaque commande renvoie une fonction de rendu (t) => JSX, ou null
 const COMMANDS = {
     help: {
         desc: { en: "list available commands", fr: "liste des commandes" },
@@ -191,7 +188,6 @@ const COMMANDS = {
     exit: {
         desc: { en: "close the terminal", fr: "ferme le terminal" },
         run: () => {
-            // la fenêtre se ferme avec Échap
             window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
             return null;
         },
@@ -221,7 +217,6 @@ function ContactWindow() {
     const endRef = useRef(null);
     const nextId = useRef(2);
 
-    // la fenêtre prend le focus à l'ouverture : on le redonne au champ juste après
     useEffect(() => {
         const id = setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 50);
         return () => clearTimeout(id);
@@ -279,7 +274,6 @@ function ContactWindow() {
                 setInput(history[i]);
             }
         } else if (e.key === "Tab") {
-            // autocomplétion (et on empêche la fenêtre de déplacer le focus)
             e.preventDefault();
             e.stopPropagation();
             const [first, ...rest] = input.split(" ");
@@ -300,7 +294,6 @@ function ContactWindow() {
       <div
         className="font-mono text-white text-sm sm:text-base md:text-lg p-5 md:p-8 leading-relaxed min-h-full cursor-text"
         onClick={() => {
-            // clic dans le terminal => focus sur le champ (sauf si on sélectionne du texte)
             if (!window.getSelection()?.toString()) inputRef.current?.focus({ preventScroll: true });
         }}
       >
@@ -329,7 +322,6 @@ function ContactWindow() {
             autoCorrect="off"
             spellCheck={false}
             enterKeyHint="send"
-            // 16px minimum pour éviter le zoom automatique sur iPhone
             className="flex-1 min-w-0 bg-transparent outline-none text-white caret-green-400 text-base sm:text-base md:text-lg"
           />
         </label>

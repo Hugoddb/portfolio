@@ -24,13 +24,11 @@ const prefersReducedMotion = () =>
 
 function BootScreen({ onDone }) {
 
-    // "boot" : lignes de démarrage, "lock" : écran de verrouillage
     const [phase, setPhase] = useState(() => (prefersReducedMotion() ? "lock" : "boot"));
     const [visibleLines, setVisibleLines] = useState(0);
     const now = useClock();
     const { lang, t } = useLanguage();
 
-    // affiche les lignes une par une, puis passe à l'écran de verrouillage
     useEffect(() => {
         if (phase !== "boot") return;
         const delay = visibleLines < bootLines.length ? LINE_DELAY : 600;
@@ -41,7 +39,6 @@ function BootScreen({ onDone }) {
         return () => clearTimeout(timeout);
     }, [phase, visibleLines]);
 
-    // n'importe quelle touche : passe le boot, puis déverrouille
     useEffect(() => {
         const onKeyDown = (e) => {
             if (e.metaKey || e.ctrlKey || e.altKey) return;

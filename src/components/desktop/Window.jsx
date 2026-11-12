@@ -53,17 +53,14 @@ function Window({ title,content,width,height,theme,onClose,}) {
     const pressedOverlay = useRef(false);
     const dragControls = useDragControls();
 
-    // fenêtres déplaçables seulement sur ordinateur (en plein écran sur mobile)
     const canDrag = useMediaQuery("(min-width: 768px)");
 
-    // à l'ouverture : focus sur la fenêtre, à la fermeture : on rend le focus (ex: au dossier cliqué)
     useEffect(() => {
         const previous = document.activeElement;
         dialogRef.current?.focus();
         return () => previous?.focus?.();
     }, []);
 
-    // touche Échap => ferme la fenêtre, Tab => le focus reste dans la fenêtre
     useEffect(() => {
         const onKeyDown = (e) => {
             if (e.key === "Escape") onClose();
@@ -91,7 +88,6 @@ function Window({ title,content,width,height,theme,onClose,}) {
         <motion.div
             ref={overlayRef}
             className="fixed inset-x-0 top-0 bottom-14 z-40 flex items-center justify-center md:p-6 bg-slate-950/30"
-            // ferme seulement si le clic commence ET finit sur le fond (pas à la fin d'un déplacement)
             onPointerDown={(e) => (pressedOverlay.current = e.target === e.currentTarget)}
             onClick={(e) => {
                 if (pressedOverlay.current && e.target === e.currentTarget) onClose();
