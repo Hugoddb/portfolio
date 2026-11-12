@@ -1,7 +1,7 @@
 import FolderIcon from "./FolderIcon";
 import Window from "./Window";
 import Taskbar from "./TaskBar";
-import background from "../../assets/images/background.png";
+import StarryBackground from "./StarryBackground";
 import githubIcon from "../../assets/icons/github.webp";
 import linkedinIcon from "../../assets/icons/linkedin.webp";
 import terminalIcon from "../../assets/icons/terminal.png";
@@ -71,9 +71,10 @@ function Desktop() {
     return (
 
         <div
-            className="relative h-dvh w-screen overflow-hidden pb-14 flex flex-col bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${background})` }}
+            className="relative isolate h-dvh w-screen overflow-hidden pb-14 flex flex-col bg-[#050a1c]"
         >
+
+        <StarryBackground className="absolute inset-0 -z-10" />
 
         <div className="hidden md:flex absolute top-8 right-8 flex-col gap-6">
         {apps.map((app) => (
@@ -86,11 +87,11 @@ function Desktop() {
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
 
-            <h1 className="font-title text-4xl sm:text-5xl font-bold text-black">
+            <h1 className="font-title text-4xl sm:text-5xl font-bold text-white">
                 Hugo de <span className="whitespace-nowrap">Dreux-Brézé</span>
             </h1>
 
-            <h2 className="text-slate-600 text-base sm:text-lg font-normal mt-2">
+            <h2 className="text-slate-300 text-base sm:text-lg font-normal mt-2">
                 {t({ en: "Developer", fr: "Développeur" })} / EPITECH Lyon
             </h2>
 

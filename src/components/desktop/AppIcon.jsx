@@ -1,4 +1,4 @@
-function AppIcon({ name, icon, url, className = "", labelClassName = "text-black" }) {
+function AppIcon({ name, icon, url, className = "", labelClassName = "text-white" }) {
     return (
       <a
         href={url}

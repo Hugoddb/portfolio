@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lock } from "lucide-react";
-import background from "../../assets/images/background.png";
+import StarryBackground from "./StarryBackground";
 import projects from "../../data/projects";
 import experiences from "../../data/experiences";
 import useClock from "../../hooks/useClock";
@@ -114,10 +114,7 @@ function BootScreen({ onDone }) {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4 }}
             >
-                <div
-                    className="absolute inset-0 bg-cover bg-center scale-110 blur-md"
-                    style={{ backgroundImage: `url(${background})` }}
-                />
+                <StarryBackground className="absolute inset-0" />
                 <div className="absolute inset-0 bg-slate-950/50" />
 
                 <div className="relative h-full flex flex-col items-center justify-between py-20 sm:py-24 px-6">

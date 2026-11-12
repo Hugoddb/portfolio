@@ -6,6 +6,9 @@ import zappy from "../assets/projects/zappy.png"
 import rmrf from "../assets/projects/rmrf.jpg"
 import hunter from "../assets/projects/hunter.png"
 import myteams from "../assets/projects/myteams.jpg"
+import sensai from "../assets/projects/sensai.png"
+import raytracer from "../assets/projects/raytracer.png"
+import myTorch from "../assets/projects/my_torch.png"
 import { technologies } from "./technologies";
 
 const projects = [
@@ -29,6 +32,57 @@ const projects = [
         github: "https://github.com/Hugoddb/portfolio",
         demo: "https://hugoddb-portfolio.vercel.app/",
         private: false,
+    },
+
+    {
+        id: 9,
+        title: "SensAI",
+        title2: { en: "SensAI - Local AI Assistant", fr: "SensAI - Assistant IA local" },
+        image: sensai,
+        description: {
+            en: "Local AI assistant built on Ollama with Qwen2.5 (3B), usable from the terminal or a web page, with a self-correcting code agent.",
+            fr: "Assistant IA local basé sur Ollama avec Qwen2.5 (3B), utilisable depuis le terminal ou une page web, avec un agent de code qui se corrige tout seul.",
+        },
+        technologies: [
+        technologies.Python,
+        ],
+        team: 4,
+        duration: { en: "6 weeks", fr: "6 semaines" },
+        private: true,
+    },
+
+    {
+        id: 10,
+        title: "Raytracer",
+        title2: { en: "Raytracer - 3D Rendering", fr: "Raytracer - Rendu 3D" },
+        image: raytracer,
+        description: {
+            en: "Ray tracing engine in C++ that generates realistic 3D images from a scene file (primitives, lights, shadows), built with an object-oriented, plugin-based architecture.",
+            fr: "Moteur de lancer de rayons en C++ qui génère des images 3D réalistes à partir d'un fichier de scène (primitives, lumières, ombres), avec une architecture orientée objet à base de plugins.",
+        },
+        technologies: [
+        technologies["C++"],
+        ],
+        team: 3,
+        duration: { en: "5 weeks", fr: "5 semaines" },
+        private: true,
+    },
+
+    {
+        id: 11,
+        title: "My_torch",
+        title2: { en: "My_torch - Neural Network", fr: "My_torch - Réseau de neurones" },
+        image: myTorch,
+        description: {
+            en: "Neural network built from scratch in Python, without any machine learning library, that analyzes chess positions (check, checkmate, stalemate).",
+            fr: "Réseau de neurones codé from scratch en Python, sans aucune librairie de machine learning, qui analyse des positions d'échecs (échec, mat, pat).",
+        },
+        technologies: [
+        technologies.Python,
+        ],
+        team: 2,
+        duration: { en: "4 weeks", fr: "4 semaines" },
+        private: true,
     },
 
     {
