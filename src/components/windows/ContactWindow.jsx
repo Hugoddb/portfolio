@@ -176,7 +176,7 @@ const COMMANDS = {
     },
     sudo: {
         desc: { en: "nice try", fr: "bien essayé" },
-        run: () => (t) => <p className="text-red-400">{t({ en: "Permission denied: hire me first 😉", fr: "Permission refusée : embauche-moi d'abord 😉" })}</p>,
+        run: () => (t) => <p className="text-red-400">{t({ en: "Permission denied", fr: "Permission refusée" })}</p>,
     },
     clear: {
         desc: { en: "clear the terminal", fr: "efface le terminal" },
